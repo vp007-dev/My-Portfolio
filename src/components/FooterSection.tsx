@@ -25,21 +25,21 @@ const FooterSection = () => {
   ];
 
   return (
-    <footer id="contact" className="section-blue py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <footer id="contact" className="section-blue py-14 md:py-28">
+      <div className="max-w-7xl mx-auto px-4 md:px-12">
         {/* Links grid */}
-        <div className="grid grid-cols-2 gap-12 mb-20">
+        <div className="grid grid-cols-2 gap-6 md:gap-12 mb-12 md:mb-20">
           <div>
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="font-handwritten text-xl text-primary-foreground/60 mb-6"
+              className="font-handwritten text-lg md:text-xl text-primary-foreground/60 mb-4 md:mb-6"
             >
               Explore
             </motion.p>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-2 md:gap-3">
               {leftLinks.map((link, i) => (
                 <motion.a
                   key={link.label}
@@ -50,7 +50,7 @@ const FooterSection = () => {
                   whileInView="visible"
                   viewport={{ once: true }}
                   whileHover={{ x: 8, transition: { duration: 0.2 } }}
-                  className="footer-link text-primary-foreground"
+                  className="footer-link text-primary-foreground !text-base md:!text-2xl"
                 >
                   {link.label}
                 </motion.a>
@@ -63,11 +63,11 @@ const FooterSection = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="font-handwritten text-xl text-primary-foreground/60 mb-6"
+              className="font-handwritten text-lg md:text-xl text-primary-foreground/60 mb-4 md:mb-6"
             >
               Social
             </motion.p>
-            <div className="flex flex-col gap-3 items-end">
+            <div className="flex flex-col gap-2 md:gap-3 items-end">
               {rightLinks.map((link, i) => (
                 <motion.a
                   key={link.label}
@@ -78,7 +78,7 @@ const FooterSection = () => {
                   whileInView="visible"
                   viewport={{ once: true }}
                   whileHover={{ x: -8, transition: { duration: 0.2 } }}
-                  className="footer-link text-primary-foreground"
+                  className="footer-link text-primary-foreground !text-base md:!text-2xl"
                 >
                   {link.label}
                 </motion.a>
@@ -93,15 +93,15 @@ const FooterSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center border-t border-primary-foreground/20 pt-12"
+          className="text-center border-t border-primary-foreground/20 pt-8 md:pt-12"
         >
           <a
             href="mailto:vanshpandey@gmail.com"
-            className="font-display font-extrabold text-2xl md:text-5xl text-primary-foreground hover:text-accent transition-colors duration-300"
+            className="font-display font-extrabold text-lg md:text-5xl text-primary-foreground hover:text-accent transition-colors duration-300 break-all md:break-normal"
           >
             vanshpandey@gmail.com
           </a>
-          <p className="text-primary-foreground/50 text-sm mt-6 font-body">
+          <p className="text-primary-foreground/50 text-xs md:text-sm mt-4 md:mt-6 font-body">
             © {new Date().getFullYear()} Vansh Pandey. Built with React & TypeScript.
           </p>
         </motion.div>

@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
 import work1 from "@/assets/work-1.png";
 import work2 from "@/assets/work-2.png";
 import work3 from "@/assets/work-3.png";
@@ -48,26 +49,26 @@ const WorkGrid = () => {
   const headerOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
   return (
-    <section ref={sectionRef} id="work" className="py-24 md:py-32">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section ref={sectionRef} id="work" className="py-16 md:py-32">
+      <div className="max-w-7xl mx-auto px-4 md:px-12">
         {/* Section headers with parallax slide-in */}
-        <div className="flex items-center justify-between mb-16 overflow-hidden">
+        <div className="flex items-center justify-between mb-8 md:mb-16 overflow-hidden">
           <motion.h2
             style={{ x: headerLeftX, opacity: headerOpacity }}
-            className="font-display font-extrabold text-4xl md:text-6xl text-primary"
+            className="font-display font-extrabold text-2xl md:text-6xl text-primary"
           >
             Frontend Dev
           </motion.h2>
           <motion.h2
             style={{ x: headerRightX, opacity: headerOpacity }}
-            className="font-display font-extrabold text-4xl md:text-6xl text-secondary"
+            className="font-display font-extrabold text-2xl md:text-6xl text-secondary"
           >
             Full Stack
           </motion.h2>
         </div>
 
-        {/* 3x3 Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {/* Mobile: 2-col compact grid | Desktop: 3-col */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -79,18 +80,31 @@ const WorkGrid = () => {
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
               className="work-card group"
             >
-              <div className="relative aspect-square overflow-hidden rounded-xl bg-muted">
+              {/* Mobile: shorter aspect ratio for breathing room */}
+              <div className="relative aspect-[4/3] md:aspect-square overflow-hidden rounded-lg md:rounded-xl bg-muted">
                 <img
                   src={project.img}
                   alt={project.title}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/60 transition-all duration-300 flex items-end p-6">
+                {/* Desktop: hover overlay */}
+                <div className="hidden md:flex absolute inset-0 bg-foreground/0 group-hover:bg-foreground/60 transition-all duration-300 items-end p-6">
                   <div className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                     <p className="font-handwritten text-lg text-accent">{project.category}</p>
                     <h3 className="font-display font-bold text-xl text-primary-foreground">{project.title}</h3>
                   </div>
+                </div>
+              </div>
+
+              {/* Mobile: always-visible label below image */}
+              <div className="md:hidden mt-2 mb-1">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-display font-bold text-sm text-foreground leading-tight">{project.title}</h3>
+                    <p className="font-handwritten text-xs text-muted-foreground">{project.category}</p>
+                  </div>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground" />
                 </div>
               </div>
             </motion.div>
