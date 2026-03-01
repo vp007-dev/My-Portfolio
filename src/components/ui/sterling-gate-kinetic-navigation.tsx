@@ -177,11 +177,12 @@ export function Component() {
   const closeMenu = () => setIsMenuOpen(false);
 
   const menuItems = [
-    { label: "Work", href: "#work", shape: "1" },
-    { label: "About", href: "#about", shape: "2" },
-    { label: "Process", href: "#services", shape: "3" },
-    { label: "Blog", href: "/blog", shape: "4", isRoute: true },
-    { label: "Contact", href: "#contact", shape: "5" },
+    { label: "Pin Board", href: "#pinboard", shape: "1" },
+    { label: "Work", href: "#work", shape: "2" },
+    { label: "About", href: "#about", shape: "3" },
+    { label: "Process", href: "#services", shape: "4" },
+    { label: "Blog", href: "/blog", shape: "5", isRoute: true },
+    { label: "Contact", href: "#contact", shape: "6" },
   ];
 
   const socialLinks = [
