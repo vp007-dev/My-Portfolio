@@ -1,48 +1,92 @@
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import heroImg from "@/assets/hero-illustration.png";
 
 const HeroSection = () => {
-  return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-20 pb-12">
-      {/* Decorative dots */}
-      <div className="absolute top-32 left-8 w-3 h-3 rounded-full bg-primary opacity-60 animate-float" />
-      <div className="absolute top-48 right-12 w-2 h-2 rounded-full bg-secondary opacity-50 animate-float-delay" />
-      <div className="absolute bottom-40 left-1/4 w-4 h-4 rounded-full bg-accent opacity-40 animate-float" />
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const marqueeX = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const dotsY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+
+  return (
+    <section ref={sectionRef} className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-20 pb-12">
+      {/* Decorative dots with parallax */}
+      <motion.div style={{ y: dotsY }} className="absolute top-32 left-8 w-3 h-3 rounded-full bg-primary opacity-60 animate-float" />
+      <motion.div style={{ y: dotsY }} className="absolute top-48 right-12 w-2 h-2 rounded-full bg-secondary opacity-50 animate-float-delay" />
+      <motion.div style={{ y: dotsY }} className="absolute bottom-40 left-1/4 w-4 h-4 rounded-full bg-accent opacity-40 animate-float" />
+
+      <motion.div style={{ y: heroY, opacity: heroOpacity }} className="max-w-7xl mx-auto px-6 md:px-12 w-full">
         {/* Handwritten labels */}
         <div className="flex items-center gap-6 mb-2">
-          <span className="font-handwritten text-2xl md:text-3xl text-primary animate-slide-up">
+          <motion.span
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="font-handwritten text-2xl md:text-3xl text-primary"
+          >
             Full-Stack Developer
-          </span>
-          <span className="font-handwritten text-2xl md:text-3xl text-secondary animate-slide-up-delay">
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="font-handwritten text-2xl md:text-3xl text-secondary"
+          >
             Space Enthusiast
-          </span>
+          </motion.span>
         </div>
 
         {/* Big Name */}
-        <h1 className="font-brush text-6xl sm:text-7xl md:text-[8rem] lg:text-[10rem] leading-[0.9] tracking-tight text-foreground animate-slide-up">
+        <motion.h1
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="font-brush text-6xl sm:text-7xl md:text-[8rem] lg:text-[10rem] leading-[0.9] tracking-tight text-foreground"
+        >
           Vansh
           <br />
           <span className="text-gradient">Pandey</span>
-        </h1>
+        </motion.h1>
 
         {/* Subtitle labels */}
-        <div className="flex items-center gap-6 mt-4">
-          <span className="font-handwritten text-xl md:text-2xl text-muted-foreground animate-slide-up-delay">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="flex items-center gap-6 mt-4"
+        >
+          <span className="font-handwritten text-xl md:text-2xl text-muted-foreground">
             React • TypeScript • Node.js
           </span>
-        </div>
+        </motion.div>
 
         {/* Quote */}
-        <div className="mt-8 max-w-md animate-slide-up-delay-2">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mt-8 max-w-md"
+        >
           <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
             &ldquo;Building digital experiences that merge clean code with creative vision. Turning complex problems into elegant, scalable solutions.&rdquo;
           </p>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      {/* Hero illustration */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full mt-8">
+      {/* Hero illustration with parallax */}
+      <motion.div
+        style={{ y: useTransform(scrollYProgress, [0, 1], [0, 80]) }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+        className="max-w-7xl mx-auto px-6 md:px-12 w-full mt-8"
+      >
         <div className="relative rounded-2xl overflow-hidden hover-lift">
           <img
             src={heroImg}
@@ -51,10 +95,10 @@ const HeroSection = () => {
             loading="eager"
           />
         </div>
-      </div>
+      </motion.div>
 
-      {/* Scrolling marquee */}
-      <div className="mt-16 overflow-hidden">
+      {/* Scrolling marquee with parallax */}
+      <motion.div style={{ x: marqueeX }} className="mt-16 overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap">
           {[...Array(4)].map((_, i) => (
             <span key={i} className="marquee-text mx-8">
@@ -62,7 +106,7 @@ const HeroSection = () => {
             </span>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

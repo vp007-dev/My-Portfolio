@@ -1,34 +1,31 @@
-import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import featuredImg from "@/assets/featured-work.png";
 
 const FeaturedWork = () => {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.2 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const imgScale = useTransform(scrollYProgress, [0, 0.5], [0.85, 1]);
+  const imgY = useTransform(scrollYProgress, [0, 1], [60, -40]);
 
   return (
-    <section className="py-24 md:py-32 bg-muted/30">
+    <section ref={sectionRef} className="py-24 md:py-32 bg-muted/30 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <h2 className="font-handwritten text-4xl md:text-6xl text-primary text-center mb-12">
-          Featured Work
-        </h2>
-
-        <div
-          ref={ref}
-          className={`transition-all duration-1000 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
-          }`}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="font-handwritten text-4xl md:text-6xl text-primary text-center mb-12"
         >
+          Featured Work
+        </motion.h2>
+
+        <motion.div style={{ scale: imgScale, y: imgY }}>
           <div className="relative max-w-3xl mx-auto hover-lift rounded-2xl overflow-hidden">
             <img
               src={featuredImg}
@@ -37,10 +34,17 @@ const FeaturedWork = () => {
               loading="lazy"
             />
           </div>
-          <p className="text-center text-muted-foreground mt-6 font-handwritten text-xl">
-            Full-Stack SaaS Platform • React • Node.js • PostgreSQL
-          </p>
-        </div>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center text-muted-foreground mt-6 font-handwritten text-xl"
+        >
+          Full-Stack SaaS Platform • React • Node.js • PostgreSQL
+        </motion.p>
       </div>
     </section>
   );

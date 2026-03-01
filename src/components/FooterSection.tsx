@@ -1,3 +1,14 @@
+import { motion } from "framer-motion";
+
+const linkVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, delay: i * 0.08, ease: "easeOut" as const },
+  }),
+};
+
 const FooterSection = () => {
   const leftLinks = [
     { label: "GITHUB", href: "#" },
@@ -19,29 +30,71 @@ const FooterSection = () => {
         {/* Links grid */}
         <div className="grid grid-cols-2 gap-12 mb-20">
           <div>
-            <p className="font-handwritten text-xl text-primary-foreground/60 mb-6">Explore</p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="font-handwritten text-xl text-primary-foreground/60 mb-6"
+            >
+              Explore
+            </motion.p>
             <div className="flex flex-col gap-3">
-              {leftLinks.map((link) => (
-                <a key={link.label} href={link.href} className="footer-link text-primary-foreground">
+              {leftLinks.map((link, i) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  custom={i}
+                  variants={linkVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  whileHover={{ x: 8, transition: { duration: 0.2 } }}
+                  className="footer-link text-primary-foreground"
+                >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
           <div className="text-right">
-            <p className="font-handwritten text-xl text-primary-foreground/60 mb-6">Social</p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="font-handwritten text-xl text-primary-foreground/60 mb-6"
+            >
+              Social
+            </motion.p>
             <div className="flex flex-col gap-3 items-end">
-              {rightLinks.map((link) => (
-                <a key={link.label} href={link.href} className="footer-link text-primary-foreground">
+              {rightLinks.map((link, i) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  custom={i}
+                  variants={linkVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  whileHover={{ x: -8, transition: { duration: 0.2 } }}
+                  className="footer-link text-primary-foreground"
+                >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
         </div>
 
         {/* Email */}
-        <div className="text-center border-t border-primary-foreground/20 pt-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-center border-t border-primary-foreground/20 pt-12"
+        >
           <a
             href="mailto:vanshpandey@gmail.com"
             className="font-display font-extrabold text-2xl md:text-5xl text-primary-foreground hover:text-accent transition-colors duration-300"
@@ -51,7 +104,7 @@ const FooterSection = () => {
           <p className="text-primary-foreground/50 text-sm mt-6 font-body">
             © {new Date().getFullYear()} Vansh Pandey. Built with React & TypeScript.
           </p>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
