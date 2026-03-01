@@ -2,9 +2,9 @@
 
 @font-face {
   font-family: 'Halfre';
-  src: url('/fonts/halfre.otf') format('opentype'),
-       url('/fonts/halfre.ttf') format('truetype');
-  font-weight: normal;
+  src: url('/fonts/halfre.ttf') format('truetype'),
+       url('/fonts/halfre.otf') format('opentype');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
@@ -120,7 +120,7 @@
   }
 
   .font-brush {
-    font-family: var(--font-brush);
+    font-family: 'Halfre', 'Kaushan Script', cursive !important;
   }
 
   .font-display {
