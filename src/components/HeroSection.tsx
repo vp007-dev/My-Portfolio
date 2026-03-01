@@ -20,7 +20,7 @@ const HeroSection = () => {
         </div>
 
         {/* Big Name */}
-        <h1 className="font-brush text-7xl sm:text-9xl md:text-[11rem] lg:text-[14rem] leading-[0.9] tracking-tight text-foreground animate-slide-up">
+        <h1 className="font-brush text-6xl sm:text-7xl md:text-[8rem] lg:text-[10rem] leading-[0.9] tracking-tight text-foreground animate-slide-up">
           Vansh
           <br />
           <span className="text-gradient">Pandey</span>
