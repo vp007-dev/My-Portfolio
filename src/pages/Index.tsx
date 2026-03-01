@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import WorkGrid from "@/components/WorkGrid";
 import FeaturedWork from "@/components/FeaturedWork";
 import PinBoard from "@/components/PinBoard";
+import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
 import FooterSection from "@/components/FooterSection";
 
@@ -15,6 +16,7 @@ const Index = () => {
       <WorkGrid />
       <FeaturedWork />
       <AboutSection />
+      <ServicesSection />
       <FooterSection />
     </div>
   );
