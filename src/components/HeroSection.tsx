@@ -17,30 +17,30 @@ const AsciiArt = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      className="hidden lg:flex border border-border rounded-2xl p-8 xl:p-10 bg-card/60 backdrop-blur-sm shadow-sm aspect-square w-[380px] xl:w-[440px] shrink-0 items-center justify-center"
+      className="hidden lg:flex border border-border rounded-2xl bg-card/60 backdrop-blur-sm shadow-sm shrink-0 items-center justify-center"
+      style={{ width: 400, height: 400 }}
     >
-      <pre className="text-[0.95rem] xl:text-[1.1rem] leading-[1.6] font-mono text-foreground/70 select-none whitespace-pre">
-{`  $ ./build_future
+      <pre className="text-[0.82rem] xl:text-[0.9rem] leading-[1.45] font-mono text-foreground/70 select-none whitespace-pre p-6">
+{`$ ./build_future          ╭─────╮
+                          │ VP. │
+╦  ╦╔═╗╔╗╔╔═╗╦ ╦         ╰─────╯
+╚╗╔╝╠═╣║║║╚═╗╠═╣
+ ╚╝ ╩ ╩╝╚╝╚═╝╩ ╩    v2.0.1
 
-  ╦  ╦╔═╗╔╗╔╔═╗╦ ╦
-  ╚╗╔╝╠═╣║║║╚═╗╠═╣
-   ╚╝ ╩ ╩╝╚╝╚═╝╩ ╩
+> compiling........... ✓
+> linking modules..... ✓
+> optimizing AST...... ✓
+> deploying build..... ✓
 
-  > compiling...
-  > linking modules
-  > optimizing AST
-  > deploying build
-  > ✓ build complete
+┌──────┐    ┌──────┐    ┌──────┐
+│  01  │────│  fn  │────│  ()  │
+└──┬───┘    └──┬───┘    └──┬───┘
+   │           │           │
+┌──▼───┐    ┌──▼───┐    ┌──▼───┐
+│  {}  │────│  =>  │────│  ██  │
+└──────┘    └──────┘    └──────┘
 
-  ┌──────┐   ┌──────┐
-  │  01  │───│  fn  │
-  └──┬───┘   └──┬───┘
-     │           │
-  ┌──▼───┐   ┌──▼───┐
-  │  {}  │───│  =>  │
-  └──────┘   └──────┘
-
-  status: online${cursorVisible ? "█" : "_"}`}
+status: online${cursorVisible ? "█" : " "}`}
       </pre>
     </motion.div>
   );
