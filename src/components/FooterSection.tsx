@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const linkVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -13,7 +14,7 @@ const FooterSection = () => {
   const leftLinks = [
     { label: "GITHUB", href: "https://github.com/vp007-dev" },
     { label: "PROJECTS", href: "#work" },
-    { label: "ITCH.IO", href: "https://vp007.itch.io/" },
+    { label: "BLOG", href: "/blog", isRoute: true },
     { label: "ORCID", href: "https://orcid.org/0009-0005-1975-6363" },
   ];
 
@@ -40,21 +41,27 @@ const FooterSection = () => {
               Explore
             </motion.p>
             <div className="flex flex-col gap-2 md:gap-3">
-              {leftLinks.map((link, i) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  custom={i}
-                  variants={linkVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  whileHover={{ x: 8, transition: { duration: 0.2 } }}
-                  className="footer-link text-primary-foreground !text-base md:!text-2xl"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+              {leftLinks.map((link, i) => {
+                const MotionEl = link.isRoute ? motion(Link) : motion.a;
+                const linkProps = link.isRoute
+                  ? { to: link.href }
+                  : { href: link.href, target: link.href.startsWith("http") ? "_blank" : undefined, rel: link.href.startsWith("http") ? "noopener noreferrer" : undefined };
+                return (
+                  <MotionEl
+                    key={link.label}
+                    {...(linkProps as any)}
+                    custom={i}
+                    variants={linkVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    whileHover={{ x: 8, transition: { duration: 0.2 } }}
+                    className="footer-link text-primary-foreground !text-base md:!text-2xl"
+                  >
+                    {link.label}
+                  </MotionEl>
+                );
+              })}
             </div>
           </div>
           <div className="text-right">
