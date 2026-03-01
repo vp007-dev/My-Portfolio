@@ -1,18 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Kaushan+Script&display=swap');
 
 @font-face {
-  font-family: 'Cremo';
-  src: url('/fonts/cremo-regular.otf') format('opentype');
+  font-family: 'Bargain';
+  src: url('/fonts/bargain.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Cremo';
-  src: url('/fonts/cremo-italic.otf') format('opentype');
-  font-weight: 400;
-  font-style: italic;
   font-display: swap;
 }
 
@@ -123,7 +115,7 @@
 
 /* Font override classes - outside @layer to ensure they win over base h1 rules */
 .font-brush {
-  font-family: 'Cremo', sans-serif !important;
+  font-family: 'Bargain', sans-serif !important;
 }
 
 .font-handwritten {
