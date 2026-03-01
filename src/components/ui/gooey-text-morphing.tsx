@@ -22,11 +22,20 @@ export function GooeyText({
   const text2Ref = React.useRef<HTMLSpanElement>(null);
 
   React.useEffect(() => {
+    if (!texts.length) return;
+
     let textIndex = texts.length - 1;
     let time = new Date();
     let morph = 0;
     let cooldown = cooldownTime;
     let animationId: number;
+
+    if (text1Ref.current && text2Ref.current) {
+      text1Ref.current.textContent = texts[textIndex % texts.length];
+      text2Ref.current.textContent = texts[(textIndex + 1) % texts.length];
+      text1Ref.current.style.opacity = "0%";
+      text2Ref.current.style.opacity = "100%";
+    }
 
     const setMorph = (fraction: number) => {
       if (text1Ref.current && text2Ref.current) {
@@ -76,8 +85,7 @@ export function GooeyText({
           textIndex = (textIndex + 1) % texts.length;
           if (text1Ref.current && text2Ref.current) {
             text1Ref.current.textContent = texts[textIndex % texts.length];
-            text2Ref.current.textContent =
-              texts[(textIndex + 1) % texts.length];
+            text2Ref.current.textContent = texts[(textIndex + 1) % texts.length];
           }
         }
         doMorph();
@@ -94,8 +102,8 @@ export function GooeyText({
   }, [texts, morphTime, cooldownTime]);
 
   return (
-    <div className={cn("relative", className)}>
-      <svg className="absolute h-0 w-0">
+    <div className={cn("relative flex min-h-[1.5em] w-full items-center", className)}>
+      <svg className="absolute h-0 w-0" aria-hidden="true">
         <defs>
           <filter id="gooey-text-threshold">
             <feColorMatrix
@@ -111,14 +119,18 @@ export function GooeyText({
       </svg>
 
       <div
-        className="inline-block"
+        className="relative block w-full"
         style={{ filter: "url(#gooey-text-threshold)" }}
+        aria-live="polite"
       >
         <span
           ref={text1Ref}
-          className={cn("absolute inset-0", textClassName)}
+          className={cn("absolute inset-0 block will-change-[filter,opacity]", textClassName)}
         />
-        <span ref={text2Ref} className={cn("", textClassName)} />
+        <span
+          ref={text2Ref}
+          className={cn("relative block will-change-[filter,opacity]", textClassName)}
+        />
       </div>
     </div>
   );
