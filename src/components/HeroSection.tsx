@@ -1,23 +1,6 @@
-import { useEffect, useState } from "react";
 import heroImg from "@/assets/hero-illustration.png";
 
 const HeroSection = () => {
-  const [fontLoaded, setFontLoaded] = useState(false);
-
-  useEffect(() => {
-    const loadFont = async () => {
-      try {
-        const font = new FontFace("HalfreCustom", "url(/fonts/halfre.ttf)");
-        const loaded = await font.load();
-        document.fonts.add(loaded);
-        setFontLoaded(true);
-      } catch (e) {
-        console.error("Failed to load Halfre font:", e);
-      }
-    };
-    loadFont();
-  }, []);
-
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-20 pb-12">
       {/* Decorative dots */}
@@ -37,7 +20,7 @@ const HeroSection = () => {
         </div>
 
         {/* Big Name */}
-        <h1 style={{ fontFamily: fontLoaded ? "'HalfreCustom', sans-serif" : "sans-serif" }} className="text-7xl sm:text-9xl md:text-[11rem] lg:text-[14rem] leading-[0.9] tracking-tight text-foreground animate-slide-up">
+        <h1 className="font-brush text-7xl sm:text-9xl md:text-[11rem] lg:text-[14rem] leading-[0.9] tracking-tight text-foreground animate-slide-up">
           Vansh
           <br />
           <span className="text-gradient">Pandey</span>
