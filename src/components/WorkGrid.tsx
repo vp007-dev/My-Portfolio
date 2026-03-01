@@ -12,15 +12,15 @@ import work8 from "@/assets/work-8.png";
 import work9 from "@/assets/work-9.png";
 
 const projects = [
-  { img: work1, title: "Analytics Dashboard", category: "Web App" },
-  { img: work2, title: "Mobile Commerce", category: "React Native" },
-  { img: work3, title: "API Gateway", category: "Backend" },
-  { img: work4, title: "Launch Platform", category: "Full Stack" },
-  { img: work5, title: "DevTools Suite", category: "Open Source" },
-  { img: work6, title: "Neural Engine", category: "AI / ML" },
-  { img: work7, title: "Cloud Infra", category: "DevOps" },
-  { img: work8, title: "Creative Lab", category: "WebGL" },
-  { img: work9, title: "Web3 Protocol", category: "Blockchain" },
+  { img: work1, title: "CRUISE 2K26", category: "College Fest", link: "https://github.com/vp007-dev" },
+  { img: work2, title: "Vidhya Swaroop", category: "NGO Website", link: "https://github.com/vp007-dev/Vidhya-Swaroop" },
+  { img: work3, title: "Savera", category: "AI / Utility", link: "https://github.com/vp007-dev/Savera" },
+  { img: work4, title: "Moon Treasures", category: "E-Commerce", link: "https://github.com/vp007-dev" },
+  { img: work5, title: "BECONIX", category: "Startup / Brand", link: "https://github.com/vp007-dev/BECONIX" },
+  { img: work6, title: "BEACON", category: "AI & IoT", link: "https://github.com/vp007-dev/BEACON" },
+  { img: work7, title: "LifeLink", category: "Emergency SOS", link: "https://github.com/vp007-dev/LifeLink" },
+  { img: work8, title: "E-Invitation", category: "Interactive Web", link: "https://github.com/vp007-dev" },
+  { img: work9, title: "GovGuard", category: "Civic Tech", link: "https://github.com/vp007-dev/GovGuard" },
 ];
 
 const cardVariants = {
@@ -57,28 +57,31 @@ const WorkGrid = () => {
             style={{ x: headerLeftX, opacity: headerOpacity }}
             className="font-display font-extrabold text-2xl md:text-6xl text-primary"
           >
-            Frontend Dev
+            My Projects
           </motion.h2>
           <motion.h2
             style={{ x: headerRightX, opacity: headerOpacity }}
             className="font-display font-extrabold text-2xl md:text-6xl text-secondary"
           >
-            Full Stack
+            Real Work
           </motion.h2>
         </div>
 
         {/* Mobile: 2-col compact grid | Desktop: 3-col */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
           {projects.map((project, index) => (
-            <motion.div
+            <motion.a
               key={index}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
               custom={index}
               variants={cardVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.15 }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="work-card group"
+              className="work-card group block"
             >
               {/* Mobile: shorter aspect ratio for breathing room */}
               <div className="relative aspect-[4/3] md:aspect-square overflow-hidden rounded-lg md:rounded-xl bg-muted">
@@ -107,7 +110,7 @@ const WorkGrid = () => {
                   <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground" />
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>

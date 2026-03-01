@@ -11,17 +11,17 @@ const linkVariants = {
 
 const FooterSection = () => {
   const leftLinks = [
-    { label: "GITHUB", href: "#" },
+    { label: "GITHUB", href: "https://github.com/vp007-dev" },
     { label: "PROJECTS", href: "#work" },
-    { label: "BLOG", href: "#" },
-    { label: "RESUME", href: "#" },
+    { label: "ITCH.IO", href: "https://vp007.itch.io/" },
+    { label: "ORCID", href: "https://orcid.org/0009-0005-1975-6363" },
   ];
 
   const rightLinks = [
-    { label: "TWITTER", href: "#" },
-    { label: "LINKEDIN", href: "#" },
-    { label: "DRIBBBLE", href: "#" },
-    { label: "DEVTO", href: "#" },
+    { label: "TWITTER / X", href: "https://twitter.com/Vp007" },
+    { label: "LINKEDIN", href: "https://www.linkedin.com/in/vansh-pandey-502451319/" },
+    { label: "PORTFOLIO", href: "https://vanshcreates.me" },
+    { label: "SIMPLE ICONS", href: "https://github.com/simple-icons/simple-icons" },
   ];
 
   return (
@@ -96,10 +96,10 @@ const FooterSection = () => {
           className="text-center border-t border-primary-foreground/20 pt-8 md:pt-12"
         >
           <a
-            href="mailto:vanshpandey@gmail.com"
+            href="mailto:vansh@vanshcreates.me"
             className="font-display font-extrabold text-lg md:text-5xl text-primary-foreground hover:text-accent transition-colors duration-300 break-all md:break-normal"
           >
-            vanshpandey@gmail.com
+            vansh@vanshcreates.me
           </a>
           <p className="text-primary-foreground/50 text-xs md:text-sm mt-4 md:mt-6 font-body">
             © {new Date().getFullYear()} Vansh Pandey. Built with React & TypeScript.

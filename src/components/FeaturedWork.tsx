@@ -22,7 +22,7 @@ const FeaturedWork = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="font-handwritten text-3xl md:text-6xl text-primary text-center mb-8 md:mb-12"
         >
-          Featured Work
+          Featured Project
         </motion.h2>
 
         <motion.div style={{ scale: imgScale, y: imgY }}>
@@ -43,7 +43,7 @@ const FeaturedWork = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center text-muted-foreground mt-4 md:mt-6 font-handwritten text-lg md:text-xl"
         >
-          Full-Stack SaaS Platform • React • Node.js • PostgreSQL
+          LifeLink — Emergency SOS Platform • React • TypeScript • Real-time Location
         </motion.p>
       </div>
     </section>
