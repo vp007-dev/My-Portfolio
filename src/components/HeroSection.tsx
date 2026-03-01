@@ -2,81 +2,46 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useCallback, useEffect } from "react";
 import { TextScramble } from "@/components/ui/text-scramble";
 
-const asciiFrames = [
-  `
-    ┌──────────────────────┐
-    │  $ ./build_future    │
-    │                      │
-    │  ██████╗ ██████╗     │
-    │  ██╔═══╝ ██╔══██╗    │
-    │  ██║     ██████╔╝    │
-    │  ██║     ██╔═══╝     │
-    │  ██████╗ ██║         │
-    │  ╚═════╝ ╚═╝         │
-    │                      │
-    │  > compiling...      │
-    │  > linking modules   │
-    │  > optimizing AST    │
-    │  > ✓ build complete  │
-    │                      │
-    │  ┌────┐  ┌────┐      │
-    │  │ 01 │──│ fn │      │
-    │  └──┬─┘  └──┬─┘      │
-    │     │       │         │
-    │  ┌──▼─┐  ┌──▼─┐      │
-    │  │ {} │──│ => │      │
-    │  └────┘  └────┘      │
-    │                      │
-    │  status: online_     │
-    └──────────────────────┘`,
-  `
-    ┌──────────────────────┐
-    │  $ ./build_future    │
-    │                      │
-    │  ██████╗ ██████╗     │
-    │  ██╔═══╝ ██╔══██╗    │
-    │  ██║     ██████╔╝    │
-    │  ██║     ██╔═══╝     │
-    │  ██████╗ ██║         │
-    │  ╚═════╝ ╚═╝         │
-    │                      │
-    │  > compiling...      │
-    │  > linking modules   │
-    │  > optimizing AST    │
-    │  > ✓ build complete  │
-    │                      │
-    │  ┌────┐  ┌────┐      │
-    │  │ 01 │──│ fn │      │
-    │  └──┬─┘  └──┬─┘      │
-    │     │       │         │
-    │  ┌──▼─┐  ┌──▼─┐      │
-    │  │ {} │──│ => │      │
-    │  └────┘  └────┘      │
-    │                      │
-    │  status: online█     │
-    └──────────────────────┘`,
-];
-
 const AsciiArt = () => {
-  const [frame, setFrame] = useState(0);
+  const [cursorVisible, setCursorVisible] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setFrame((f) => (f + 1) % asciiFrames.length);
-    }, 800);
+      setCursorVisible((v) => !v);
+    }, 600);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <motion.pre
-      initial={{ opacity: 0, x: 40 }}
-      animate={{ opacity: 1, x: 0 }}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      className="hidden lg:block text-[0.55rem] xl:text-[0.65rem] leading-[1.3] font-mono text-foreground/60 select-none whitespace-pre"
-      aria-hidden="true"
+      className="hidden lg:block border border-border rounded-xl p-5 xl:p-6 bg-card/60 backdrop-blur-sm shadow-sm w-[260px] xl:w-[300px] shrink-0"
     >
-      {asciiFrames[frame]}
-    </motion.pre>
+      <pre className="text-[0.7rem] xl:text-[0.78rem] leading-[1.5] font-mono text-foreground/70 select-none whitespace-pre">
+{`$ ./build_future
+        
+  ╦  ╦╔═╗
+  ╚╗╔╝╠═╝
+   ╚╝ ╩  
+
+  > compiling...
+  > linking modules
+  > optimizing AST
+  > ✓ build complete
+
+  ┌────┐  ┌────┐
+  │ 01 │──│ fn │
+  └──┬─┘  └──┬─┘
+     │       │
+  ┌──▼─┐  ┌──▼─┐
+  │ {} │──│ => │
+  └────┘  └────┘
+
+  status: online${cursorVisible ? "█" : "_"}`}
+      </pre>
+    </motion.div>
   );
 };
 
