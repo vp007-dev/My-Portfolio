@@ -103,10 +103,10 @@ const FooterSection = () => {
           className="text-center border-t border-primary-foreground/20 pt-8 md:pt-12"
         >
           <a
-            href="mailto:vansh@vanshcreates.me"
+            href="mailto:vanshpandey928@gmail.com"
             className="font-display font-extrabold text-lg md:text-5xl text-primary-foreground hover:text-accent transition-colors duration-300 break-all md:break-normal"
           >
-            vansh@vanshcreates.me
+            vanshpandey928@gmail.com
           </a>
           <p className="text-primary-foreground/50 text-xs md:text-sm mt-4 md:mt-6 font-body">
             © {new Date().getFullYear()} Vansh Pandey. Built with React & TypeScript.
