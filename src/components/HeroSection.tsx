@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
 import { TextScramble } from "@/components/ui/text-scramble";
-import heroImg from "@/assets/hero-illustration.png";
 
 const phrases = [
   "Building immersive digital experiences",
@@ -71,11 +70,6 @@ const HeroSection = () => {
         </motion.div>
       </motion.div>
 
-      <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, 80]) }} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }} className="max-w-7xl mx-auto px-4 md:px-12 w-full mt-6 md:mt-8">
-        <div className="relative rounded-xl md:rounded-2xl overflow-hidden hover-lift">
-          <img src={heroImg} alt="Developer workspace illustration" className="w-full h-auto object-cover rounded-xl md:rounded-2xl" loading="eager" />
-        </div>
-      </motion.div>
 
       <motion.div style={{ x: marqueeX }} className="mt-10 md:mt-16 overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap">
