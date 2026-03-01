@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { ArrowUpRight, Mail, Github, Linkedin, Twitter } from "lucide-react";
@@ -11,6 +12,7 @@ export function Component() {
   const containerRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Scroll-aware header
   useEffect(() => {
@@ -177,8 +179,8 @@ export function Component() {
   const menuItems = [
     { label: "Work", href: "#work", shape: "1" },
     { label: "About", href: "#about", shape: "2" },
-    { label: "Services", href: "#services", shape: "3" },
-    { label: "Blog", href: "#blog", shape: "4" },
+    { label: "Process", href: "#services", shape: "3" },
+    { label: "Blog", href: "/blog", shape: "4", isRoute: true },
     { label: "Contact", href: "#contact", shape: "5" },
   ];
 
@@ -306,7 +308,18 @@ export function Component() {
                     <a
                       href={item.href}
                       className="nav-link group"
-                      onClick={closeMenu}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        closeMenu();
+                        if ((item as any).isRoute) {
+                          navigate(item.href);
+                        } else {
+                          const el = document.querySelector(item.href);
+                          if (el) {
+                            setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 600);
+                          }
+                        }
+                      }}
                     >
                       <span className="nav-link-number font-display">
                         {String(index + 1).padStart(2, "0")}
