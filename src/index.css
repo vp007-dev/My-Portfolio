@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Kaushan+Script&display=swap');
 
 @font-face {
-  font-family: 'Halfre';
+  font-family: 'HalfreCustom';
   src: url('/fonts/halfre.ttf') format('truetype'),
        url('/fonts/halfre.otf') format('opentype');
   font-weight: 100 900;
@@ -114,18 +114,20 @@
   }
 }
 
+/* Font override classes - outside @layer to ensure they win over base h1 rules */
+.font-brush {
+  font-family: 'Halfre', 'Kaushan Script', cursive !important;
+}
+
+.font-handwritten {
+  font-family: var(--font-handwritten) !important;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
 @layer components {
-  .font-handwritten {
-    font-family: var(--font-handwritten);
-  }
-
-  .font-brush {
-    font-family: 'Halfre', 'Kaushan Script', cursive !important;
-  }
-
-  .font-display {
-    font-family: var(--font-display);
-  }
 
   .section-blue {
     @apply bg-primary text-primary-foreground;
