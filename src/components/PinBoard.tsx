@@ -121,7 +121,7 @@ const PinBoard = () => {
   };
 
   return (
-    <section id="services" className="py-12 md:py-20 overflow-hidden">
+    <section id="pinboard" className="py-12 md:py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-12 mb-8">
         <motion.h2
           initial={{ opacity: 0, x: -40 }}
