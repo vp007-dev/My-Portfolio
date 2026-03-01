@@ -17,30 +17,30 @@ const AsciiArt = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      className="hidden lg:flex border border-border rounded-2xl bg-card/60 backdrop-blur-sm shadow-sm shrink-0 items-center justify-center"
-      style={{ width: 400, height: 400 }}
+      className="hidden lg:flex border border-border rounded-2xl bg-card/60 backdrop-blur-sm shadow-sm shrink-0 items-center justify-center overflow-hidden"
+      style={{ width: 380, height: 380 }}
     >
-      <pre className="text-[0.82rem] xl:text-[0.9rem] leading-[1.45] font-mono text-foreground/70 select-none whitespace-pre p-6">
-{`$ ./build_future          ╭─────╮
-                          │ VP. │
-╦  ╦╔═╗╔╗╔╔═╗╦ ╦         ╰─────╯
-╚╗╔╝╠═╣║║║╚═╗╠═╣
- ╚╝ ╩ ╩╝╚╝╚═╝╩ ╩    v2.0.1
+      <pre className="text-[0.72rem] xl:text-[0.78rem] leading-[1.4] font-mono text-foreground/70 select-none whitespace-pre p-5">
+{`$ ./build_future                    v2.0.1
 
-> compiling........... ✓
-> linking modules..... ✓
-> optimizing AST...... ✓
-> deploying build..... ✓
+╦  ╦╔═╗╔╗╔╔═╗╦ ╦   ╔═╗╔═╗╔╗╔╔╦╗╔═╗╦ ╦
+╚╗╔╝╠═╣║║║╚═╗╠═╣   ╠═╝╠═╣║║║ ║║║╣ ╚╦╝
+ ╚╝ ╩ ╩╝╚╝╚═╝╩ ╩   ╩  ╩ ╩╝╚╝═╩╝╚═╝ ╩
 
-┌──────┐    ┌──────┐    ┌──────┐
-│  01  │────│  fn  │────│  ()  │
-└──┬───┘    └──┬───┘    └──┬───┘
-   │           │           │
-┌──▼───┐    ┌──▼───┐    ┌──▼───┐
-│  {}  │────│  =>  │────│  ██  │
-└──────┘    └──────┘    └──────┘
+> compiling............. ✓   ████░░ 72%
+> linking modules....... ✓   ██████ done
+> optimizing AST........ ✓   ██████ done
+> deploying build....... ✓   ██████ done
 
-status: online${cursorVisible ? "█" : " "}`}
+┌──────┐  ┌──────┐  ┌──────┐  ┌──────┐
+│  01  │──│  fn  │──│  ()  │──│  >>  │
+└──┬───┘  └──┬───┘  └──┬───┘  └──┬───┘
+   │         │         │         │
+┌──▼───┐  ┌──▼───┐  ┌──▼───┐  ┌──▼───┐
+│  {}  │──│  =>  │──│  ██  │──│  ✓!  │
+└──────┘  └──────┘  └──────┘  └──────┘
+
+status: online${cursorVisible ? "█" : " "}        mem: 128MB | cpu: 3%`}
       </pre>
     </motion.div>
   );
