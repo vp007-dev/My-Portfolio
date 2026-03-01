@@ -13,9 +13,9 @@ const AboutSection = () => {
   const textY = useTransform(scrollYProgress, [0, 1], [40, -30]);
 
   return (
-    <section ref={sectionRef} id="about" className="py-24 md:py-32 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section ref={sectionRef} id="about" className="py-16 md:py-32 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Text side */}
           <motion.div style={{ y: textY }}>
             <motion.h2
@@ -23,7 +23,7 @@ const AboutSection = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display font-extrabold text-5xl md:text-7xl text-primary mb-8"
+              className="font-display font-extrabold text-3xl md:text-7xl text-primary mb-5 md:mb-8"
             >
               About
             </motion.h2>
@@ -39,7 +39,7 @@ const AboutSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.15 * (i + 1) }}
-                className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6"
+                className="text-muted-foreground text-sm md:text-lg leading-relaxed mb-4 md:mb-6"
               >
                 {text}
               </motion.p>
@@ -50,27 +50,27 @@ const AboutSection = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="mt-8 inline-block"
+              className="mt-5 md:mt-8 inline-block"
             >
-              <span className="font-display font-extrabold text-3xl md:text-5xl text-secondary uppercase tracking-wider">
+              <span className="font-display font-extrabold text-2xl md:text-5xl text-secondary uppercase tracking-wider">
                 PROCESS
               </span>
             </motion.div>
           </motion.div>
 
           {/* Image side with parallax */}
-          <motion.div style={{ y: imgY }} className="relative">
+          <motion.div style={{ y: imgY }} className="relative order-first md:order-last">
             <motion.div
               initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
               whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="rounded-2xl overflow-hidden hover-lift"
+              className="rounded-xl md:rounded-2xl overflow-hidden hover-lift"
             >
               <img
                 src={aboutImg}
                 alt="About Vansh Pandey - Developer illustration"
-                className="w-full h-auto rounded-2xl"
+                className="w-full h-auto rounded-xl md:rounded-2xl"
                 loading="lazy"
               />
             </motion.div>
