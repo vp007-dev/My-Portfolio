@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import heroImg from "@/assets/hero-illustration.png";
+import { GooeyText } from "@/components/ui/gooey-text-morphing";
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -38,10 +39,19 @@ const HeroSection = () => {
           <span className="font-handwritten text-lg md:text-2xl text-muted-foreground">React • TypeScript • Node.js</span>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }} className="mt-5 md:mt-8 max-w-md">
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            &ldquo;Building digital experiences that merge clean code with creative vision. Turning complex problems into elegant, scalable solutions.&rdquo;
-          </p>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }} className="mt-5 md:mt-8 max-w-lg">
+          <GooeyText
+            texts={[
+              "Building digital experiences",
+              "Merging code with creativity",
+              "Solving complex problems",
+              "Crafting elegant solutions",
+            ]}
+            morphTime={1.5}
+            cooldownTime={0.5}
+            className="h-10 md:h-12"
+            textClassName="text-muted-foreground text-sm md:text-base font-body leading-relaxed"
+          />
         </motion.div>
       </motion.div>
 
