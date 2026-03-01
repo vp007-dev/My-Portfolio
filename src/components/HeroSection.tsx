@@ -4,10 +4,10 @@ import heroImg from "@/assets/hero-illustration.png";
 import { TextScramble } from "@/components/ui/text-scramble";
 
 const phrases = [
-  "Building digital experiences",
-  "Merging code with creativity",
-  "Solving complex problems",
-  "Crafting elegant solutions",
+  "Building immersive digital experiences",
+  "Merging code with creativity & science",
+  "From games to AI-driven platforms",
+  "NASA Space Apps • Open Source • IoT",
 ];
 
 const HeroSection = () => {
@@ -42,10 +42,10 @@ const HeroSection = () => {
       <motion.div style={{ y: heroY, opacity: heroOpacity }} className="max-w-7xl mx-auto px-4 md:px-12 w-full">
         <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-6 mb-2">
           <motion.span initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} className="font-handwritten text-xl md:text-3xl text-primary">
-            Full-Stack Developer
+            Full-Stack Developer & Game Dev
           </motion.span>
           <motion.span initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }} className="font-handwritten text-xl md:text-3xl text-secondary">
-            Space Enthusiast
+            AI/ML • Space Enthusiast
           </motion.span>
         </div>
 
@@ -54,7 +54,7 @@ const HeroSection = () => {
         </motion.h1>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }} className="flex items-center gap-6 mt-3 md:mt-4">
-          <span className="font-handwritten text-lg md:text-2xl text-muted-foreground">React • TypeScript • Node.js</span>
+          <span className="font-handwritten text-lg md:text-2xl text-muted-foreground">React • Next.js • Python • C++ • Unity • PhaserJS</span>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }} className="mt-5 md:mt-8 max-w-lg h-10 md:h-12 flex items-center">

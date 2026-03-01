@@ -29,9 +29,9 @@ const AboutSection = () => {
             </motion.h2>
 
             {[
-              "Vansh Pandey is a full-stack developer and creative technologist with an insatiable curiosity about building exceptional digital experiences. With a focus on modern web technologies, he crafts performant, beautiful applications that push boundaries.",
-              "His expertise spans across React, TypeScript, Node.js, cloud architecture, and developer tooling. He believes in writing code that is not just functional but elegant — blending engineering precision with creative expression.",
-              "When not coding, you'll find him exploring space tech, contributing to open source, and experimenting with creative coding and generative art.",
+              "Vansh Pandey is a BTech Computer Science student (AI & ML) at Sharda University, Agra. A passionate coder since age 11, he works across C, C++, C#, JavaScript, React, Next.js, PhaserJS, Unity, SDL2, and NASM — building everything from games to AI-driven platforms.",
+              "He's a NASA Space Apps Challenge participant, open-source contributor (Simple Icons), and creator of projects like BEACON (AI & IoT waste management), LifeLink (emergency SOS), Savera (AI utility optimization), and immersive experiences like Symphony of Stars.",
+              "Beyond software, he's deeply curious about physics research and space science — constantly exploring the intersection of code, AI, and scientific discovery to build impactful technology.",
             ].map((text, i) => (
               <motion.p
                 key={i}
