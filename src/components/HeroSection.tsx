@@ -1,10 +1,28 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useCallback } from "react";
 import heroImg from "@/assets/hero-illustration.png";
-import { GooeyText } from "@/components/ui/gooey-text-morphing";
+import { TextScramble } from "@/components/ui/text-scramble";
+
+const phrases = [
+  "Building digital experiences",
+  "Merging code with creativity",
+  "Solving complex problems",
+  "Crafting elegant solutions",
+];
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [trigger, setTrigger] = useState(true);
+
+  const handleScrambleComplete = useCallback(() => {
+    setTimeout(() => {
+      setPhraseIndex((prev) => (prev + 1) % phrases.length);
+      setTrigger(false);
+      requestAnimationFrame(() => setTrigger(true));
+    }, 2000);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -39,19 +57,17 @@ const HeroSection = () => {
           <span className="font-handwritten text-lg md:text-2xl text-muted-foreground">React • TypeScript • Node.js</span>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }} className="mt-5 md:mt-8 max-w-lg">
-          <GooeyText
-            texts={[
-              "Building digital experiences",
-              "Merging code with creativity",
-              "Solving complex problems",
-              "Crafting elegant solutions",
-            ]}
-            morphTime={1.5}
-            cooldownTime={0.5}
-            className="h-10 md:h-12"
-            textClassName="text-foreground text-base md:text-lg font-display font-semibold leading-relaxed"
-          />
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }} className="mt-5 md:mt-8 max-w-lg h-10 md:h-12 flex items-center">
+          <TextScramble
+            as="span"
+            trigger={trigger}
+            duration={1}
+            speed={0.03}
+            onScrambleComplete={handleScrambleComplete}
+            className="text-foreground text-base md:text-lg font-display font-semibold leading-relaxed"
+          >
+            {phrases[phraseIndex]}
+          </TextScramble>
         </motion.div>
       </motion.div>
 
