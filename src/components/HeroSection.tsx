@@ -1,6 +1,84 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { TextScramble } from "@/components/ui/text-scramble";
+
+const asciiFrames = [
+  `
+    ┌──────────────────────┐
+    │  $ ./build_future    │
+    │                      │
+    │  ██████╗ ██████╗     │
+    │  ██╔═══╝ ██╔══██╗    │
+    │  ██║     ██████╔╝    │
+    │  ██║     ██╔═══╝     │
+    │  ██████╗ ██║         │
+    │  ╚═════╝ ╚═╝         │
+    │                      │
+    │  > compiling...      │
+    │  > linking modules   │
+    │  > optimizing AST    │
+    │  > ✓ build complete  │
+    │                      │
+    │  ┌────┐  ┌────┐      │
+    │  │ 01 │──│ fn │      │
+    │  └──┬─┘  └──┬─┘      │
+    │     │       │         │
+    │  ┌──▼─┐  ┌──▼─┐      │
+    │  │ {} │──│ => │      │
+    │  └────┘  └────┘      │
+    │                      │
+    │  status: online_     │
+    └──────────────────────┘`,
+  `
+    ┌──────────────────────┐
+    │  $ ./build_future    │
+    │                      │
+    │  ██████╗ ██████╗     │
+    │  ██╔═══╝ ██╔══██╗    │
+    │  ██║     ██████╔╝    │
+    │  ██║     ██╔═══╝     │
+    │  ██████╗ ██║         │
+    │  ╚═════╝ ╚═╝         │
+    │                      │
+    │  > compiling...      │
+    │  > linking modules   │
+    │  > optimizing AST    │
+    │  > ✓ build complete  │
+    │                      │
+    │  ┌────┐  ┌────┐      │
+    │  │ 01 │──│ fn │      │
+    │  └──┬─┘  └──┬─┘      │
+    │     │       │         │
+    │  ┌──▼─┐  ┌──▼─┐      │
+    │  │ {} │──│ => │      │
+    │  └────┘  └────┘      │
+    │                      │
+    │  status: online█     │
+    └──────────────────────┘`,
+];
+
+const AsciiArt = () => {
+  const [frame, setFrame] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFrame((f) => (f + 1) % asciiFrames.length);
+    }, 800);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <motion.pre
+      initial={{ opacity: 0, x: 40 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
+      className="hidden lg:block text-[0.55rem] xl:text-[0.65rem] leading-[1.3] font-mono text-foreground/60 select-none whitespace-pre"
+      aria-hidden="true"
+    >
+      {asciiFrames[frame]}
+    </motion.pre>
+  );
+};
 
 const phrases = [
   "Building immersive digital experiences",
@@ -74,45 +152,53 @@ const HeroSection = () => {
           </motion.span>
         </div>
 
-        {/* Main name — letter-by-letter reveal */}
-        <h1 className="font-brush font-black leading-[0.85] tracking-tight">
-          <span className="block text-[4.5rem] sm:text-[6rem] md:text-[9rem] lg:text-[12rem] text-foreground">
-            {firstNameLetters.map((letter, i) => (
-              <motion.span
-                key={`f-${i}`}
-                initial={{ opacity: 0, y: 80, rotateX: -90 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.3 + i * 0.06,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="inline-block"
-                style={{ transformOrigin: "bottom" }}
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </span>
-          <span className="block text-[4.5rem] sm:text-[6rem] md:text-[9rem] lg:text-[12rem]">
-            {lastNameLetters.map((letter, i) => (
-              <motion.span
-                key={`l-${i}`}
-                initial={{ opacity: 0, y: 80, rotateX: -90 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.6 + i * 0.06,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="inline-block text-gradient"
-                style={{ transformOrigin: "bottom" }}
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </span>
-        </h1>
+        {/* Name + ASCII art row */}
+        <div className="flex items-start justify-between gap-4">
+          {/* Main name — letter-by-letter reveal */}
+          <h1 className="font-brush font-black leading-[0.85] tracking-tight flex-1">
+            <span className="block text-[4.5rem] sm:text-[6rem] md:text-[9rem] lg:text-[12rem] text-foreground">
+              {firstNameLetters.map((letter, i) => (
+                <motion.span
+                  key={`f-${i}`}
+                  initial={{ opacity: 0, y: 80, rotateX: -90 }}
+                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.3 + i * 0.06,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="inline-block"
+                  style={{ transformOrigin: "bottom" }}
+                >
+                  {letter}
+                </motion.span>
+              ))}
+            </span>
+            <span className="block text-[4.5rem] sm:text-[6rem] md:text-[9rem] lg:text-[12rem]">
+              {lastNameLetters.map((letter, i) => (
+                <motion.span
+                  key={`l-${i}`}
+                  initial={{ opacity: 0, y: 80, rotateX: -90 }}
+                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.6 + i * 0.06,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="inline-block text-gradient"
+                  style={{ transformOrigin: "bottom" }}
+                >
+                  {letter}
+                </motion.span>
+              ))}
+            </span>
+          </h1>
+
+          {/* ASCII art on right */}
+          <div className="hidden lg:flex items-start pt-4 xl:pt-8">
+            <AsciiArt />
+          </div>
+        </div>
 
         {/* Tech stack + scramble text row */}
         <div className="mt-5 md:mt-8 flex flex-col md:flex-row md:items-center gap-3 md:gap-8">
@@ -122,7 +208,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 1 }}
             className="flex flex-wrap gap-1.5 md:gap-2"
           >
-            {["React", "Next.js", "Python", "C++", "Unity"].map((tech, i) => (
+            {["React", "Next.js", "Python", "C++", "Unity"].map((tech) => (
               <span
                 key={tech}
                 className="px-2 py-0.5 md:px-3 md:py-1 rounded border border-border/60 bg-muted/40 font-body text-[10px] md:text-xs text-muted-foreground tracking-wide"
@@ -152,6 +238,8 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </motion.div>
+
+
 
       {/* Marquee */}
       <motion.div style={{ x: marqueeX }} className="mt-8 md:mt-16 overflow-hidden">
