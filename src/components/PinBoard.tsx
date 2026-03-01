@@ -23,8 +23,7 @@ interface PinItem {
   color?: string;
 }
 
-const pinItems: PinItem[] = [
-  // Images scattered around
+const pinItemsDesktop: PinItem[] = [
   { id: "p1", type: "image", x: 80, y: 60, rotation: -3, width: 280, image: work1, content: "SpaceVista — NASA Space Apps" },
   { id: "p2", type: "image", x: 650, y: 180, rotation: 4, width: 260, image: work2, content: "GameForge Engine" },
   { id: "p3", type: "image", x: 1200, y: 40, rotation: -2, width: 300, image: featureImg, content: "React Development" },
@@ -33,14 +32,10 @@ const pinItems: PinItem[] = [
   { id: "p6", type: "image", x: 1500, y: 250, rotation: 3, width: 250, image: work5, content: "Portfolio v2" },
   { id: "p7", type: "image", x: -200, y: 350, rotation: -5, width: 260, image: work6, content: "Open Source Tools" },
   { id: "p8", type: "image", x: 1700, y: 500, rotation: 2, width: 240, image: work1, content: "ML Pipeline" },
-
-  // Achievement cards
   { id: "a1", type: "achievement", x: 350, y: 30, rotation: 6, icon: Trophy, color: "hsl(var(--primary))", content: "NASA Space Apps", subtitle: "Global Winner 2024" },
   { id: "a2", type: "achievement", x: 900, y: 20, rotation: -5, icon: Star, color: "hsl(var(--secondary))", content: "Open Source", subtitle: "500+ Contributions" },
   { id: "a3", type: "achievement", x: 1400, y: 500, rotation: 4, icon: Rocket, color: "hsl(var(--accent))", content: "Projects Shipped", subtitle: "30+ Deployed" },
   { id: "a4", type: "achievement", x: -100, y: 100, rotation: -3, icon: Brain, color: "hsl(var(--primary))", content: "AI/ML Models", subtitle: "12+ Trained" },
-
-  // Tags / labels
   { id: "t1", type: "tag", x: 550, y: 380, rotation: -8, content: "React", color: "hsl(var(--primary))" },
   { id: "t2", type: "tag", x: 180, y: 500, rotation: 12, content: "Unity", color: "hsl(var(--secondary))" },
   { id: "t3", type: "tag", x: 1100, y: 300, rotation: -6, content: "Python", color: "hsl(var(--accent))" },
@@ -48,14 +43,30 @@ const pinItems: PinItem[] = [
   { id: "t5", type: "tag", x: 1600, y: 80, rotation: -4, content: "Next.js", color: "hsl(var(--secondary))" },
   { id: "t6", type: "tag", x: -50, y: 550, rotation: 7, content: "TensorFlow", color: "hsl(var(--accent))" },
   { id: "t7", type: "tag", x: 1350, y: 350, rotation: -10, content: "Node.js", color: "hsl(var(--primary))" },
-
-  // Text quotes
   { id: "q1", type: "text", x: 700, y: -30, rotation: -2, content: "\"Code is poetry written in logic.\"" },
   { id: "q2", type: "text", x: 1500, y: 600, rotation: 3, content: "\"Always building, always learning.\"" },
 ];
 
-const BOARD_WIDTH = 2200;
-const BOARD_HEIGHT = 800;
+const pinItemsMobile: PinItem[] = [
+  { id: "p1", type: "image", x: 20, y: 30, rotation: -2, width: 160, image: work1, content: "SpaceVista" },
+  { id: "p2", type: "image", x: 380, y: 100, rotation: 3, width: 150, image: work2, content: "GameForge" },
+  { id: "p3", type: "image", x: 700, y: 20, rotation: -1, width: 170, image: featureImg, content: "React Dev" },
+  { id: "p4", type: "image", x: 200, y: 280, rotation: 4, width: 140, image: work3, content: "AI Vision" },
+  { id: "p5", type: "image", x: 560, y: 300, rotation: -3, width: 155, image: work4, content: "IoT Dashboard" },
+  { id: "p6", type: "image", x: 850, y: 180, rotation: 2, width: 145, image: work5, content: "Portfolio v2" },
+  { id: "a1", type: "achievement", x: 220, y: 10, rotation: 5, icon: Trophy, color: "hsl(var(--primary))", content: "NASA Space Apps", subtitle: "Winner 2024" },
+  { id: "a2", type: "achievement", x: 600, y: 440, rotation: -4, icon: Star, color: "hsl(var(--secondary))", content: "Open Source", subtitle: "500+ Contributions" },
+  { id: "t1", type: "tag", x: 50, y: 250, rotation: -6, content: "React", color: "hsl(var(--primary))" },
+  { id: "t2", type: "tag", x: 450, y: 430, rotation: 8, content: "Unity", color: "hsl(var(--secondary))" },
+  { id: "t3", type: "tag", x: 780, y: 400, rotation: -5, content: "Python", color: "hsl(var(--accent))" },
+  { id: "t4", type: "tag", x: 100, y: 440, rotation: 10, content: "C++", color: "hsl(var(--primary))" },
+  { id: "q1", type: "text", x: 380, y: -10, rotation: -2, content: "\"Code is poetry.\"" },
+];
+
+const BOARD_WIDTH_DESKTOP = 2200;
+const BOARD_HEIGHT_DESKTOP = 800;
+const BOARD_WIDTH_MOBILE = 1050;
+const BOARD_HEIGHT_MOBILE = 550;
 
 const PinBoard = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -64,14 +75,18 @@ const PinBoard = () => {
   const boardX = useMotionValue(0);
   const boardY = useMotionValue(0);
   const [containerSize, setContainerSize] = useState({ w: 0, h: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  const pinItems = isMobile ? pinItemsMobile : pinItemsDesktop;
+  const BOARD_WIDTH = isMobile ? BOARD_WIDTH_MOBILE : BOARD_WIDTH_DESKTOP;
+  const BOARD_HEIGHT = isMobile ? BOARD_HEIGHT_MOBILE : BOARD_HEIGHT_DESKTOP;
 
   useEffect(() => {
     const updateSize = () => {
       if (containerRef.current) {
-        setContainerSize({
-          w: containerRef.current.clientWidth,
-          h: containerRef.current.clientHeight,
-        });
+        const w = containerRef.current.clientWidth;
+        setContainerSize({ w, h: containerRef.current.clientHeight });
+        setIsMobile(w < 768);
       }
     };
     updateSize();
@@ -79,7 +94,6 @@ const PinBoard = () => {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  // Center board initially
   useEffect(() => {
     if (containerSize.w > 0) {
       const initialX = -(BOARD_WIDTH - containerSize.w) / 2;
@@ -87,7 +101,7 @@ const PinBoard = () => {
       boardX.set(initialX);
       boardY.set(initialY);
     }
-  }, [containerSize]);
+  }, [containerSize, isMobile]);
 
   const clampPosition = (x: number, y: number) => {
     const minX = -(BOARD_WIDTH - containerSize.w + 100);
@@ -121,14 +135,14 @@ const PinBoard = () => {
   };
 
   return (
-    <section id="pinboard" className="py-12 md:py-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 md:px-12 mb-8">
+    <section id="pinboard" className="py-8 md:py-20 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 md:px-12 mb-4 md:mb-8">
         <motion.h2
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="font-brush font-black text-4xl md:text-7xl text-primary"
+          className="font-brush font-black text-3xl md:text-7xl text-primary"
         >
           My Pin Board
         </motion.h2>
@@ -137,7 +151,7 @@ const PinBoard = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="font-handwritten text-lg md:text-2xl text-muted-foreground mt-2"
+          className="font-handwritten text-base md:text-2xl text-muted-foreground mt-1 md:mt-2"
         >
           drag to explore ↔
         </motion.p>
@@ -145,7 +159,7 @@ const PinBoard = () => {
 
       <div
         ref={containerRef}
-        className="relative w-full h-[500px] md:h-[700px] cursor-grab active:cursor-grabbing select-none overflow-hidden"
+        className="relative w-full h-[400px] md:h-[700px] cursor-grab active:cursor-grabbing select-none overflow-hidden"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
@@ -179,17 +193,16 @@ const PinBoard = () => {
             >
               {item.type === "image" && (
                 <div className="group relative">
-                  {/* Pin */}
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10 w-4 h-4 rounded-full bg-destructive shadow-md border-2 border-destructive/50" />
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10 w-3 h-3 md:w-4 md:h-4 rounded-full bg-destructive shadow-md border-2 border-destructive/50" />
                   <div className="bg-card border border-border rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <img
                       src={item.image}
                       alt={item.content || ""}
-                      className="w-full h-40 md:h-48 object-cover"
+                      className="w-full h-28 md:h-48 object-cover"
                       draggable={false}
                     />
-                    <div className="p-3">
-                      <p className="font-display font-semibold text-sm text-foreground">{item.content}</p>
+                    <div className="p-2 md:p-3">
+                      <p className="font-display font-semibold text-xs md:text-sm text-foreground">{item.content}</p>
                     </div>
                   </div>
                 </div>
@@ -197,31 +210,29 @@ const PinBoard = () => {
 
               {item.type === "achievement" && (
                 <div className="relative">
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10 w-4 h-4 rounded-full bg-accent shadow-md border-2 border-accent/50" />
-                  <div className="bg-card border-2 border-border rounded-xl p-4 md:p-5 shadow-lg w-[180px] md:w-[200px]">
-                    {item.icon && <item.icon className="w-8 h-8 mb-2" style={{ color: item.color }} />}
-                    <p className="font-display font-bold text-foreground text-sm md:text-base">{item.content}</p>
-                    <p className="text-muted-foreground text-xs mt-1">{item.subtitle}</p>
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10 w-3 h-3 md:w-4 md:h-4 rounded-full bg-accent shadow-md border-2 border-accent/50" />
+                  <div className="bg-card border-2 border-border rounded-xl p-3 md:p-5 shadow-lg w-[140px] md:w-[200px]">
+                    {item.icon && <item.icon className="w-6 h-6 md:w-8 md:h-8 mb-1 md:mb-2" style={{ color: item.color }} />}
+                    <p className="font-display font-bold text-foreground text-xs md:text-base">{item.content}</p>
+                    <p className="text-muted-foreground text-[10px] md:text-xs mt-0.5 md:mt-1">{item.subtitle}</p>
                   </div>
                 </div>
               )}
 
               {item.type === "tag" && (
                 <div className="relative inline-block">
-                  <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 z-10 w-3 h-3 rounded-full bg-primary shadow border border-primary/50" />
-                  <span
-                    className="inline-block px-4 py-2 rounded-full font-display font-bold text-sm shadow-md border border-border bg-card text-foreground"
-                  >
+                  <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 z-10 w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-primary shadow border border-primary/50" />
+                  <span className="inline-block px-3 py-1.5 md:px-4 md:py-2 rounded-full font-display font-bold text-xs md:text-sm shadow-md border border-border bg-card text-foreground">
                     {item.content}
                   </span>
                 </div>
               )}
 
               {item.type === "text" && (
-                <div className="relative max-w-[250px]">
-                  <div className="absolute -top-1.5 left-4 z-10 w-3 h-3 rounded-full bg-secondary shadow border border-secondary/50" />
-                  <div className="bg-card/80 backdrop-blur border border-border rounded-lg p-4 shadow-md">
-                    <p className="font-handwritten text-base md:text-lg text-muted-foreground italic">{item.content}</p>
+                <div className="relative max-w-[180px] md:max-w-[250px]">
+                  <div className="absolute -top-1.5 left-4 z-10 w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-secondary shadow border border-secondary/50" />
+                  <div className="bg-card/80 backdrop-blur border border-border rounded-lg p-3 md:p-4 shadow-md">
+                    <p className="font-handwritten text-sm md:text-lg text-muted-foreground italic">{item.content}</p>
                   </div>
                 </div>
               )}
