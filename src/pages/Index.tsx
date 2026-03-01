@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import { Component as KineticNav } from "@/components/ui/sterling-gate-kinetic-navigation";
 import HeroSection from "@/components/HeroSection";
 import WorkGrid from "@/components/WorkGrid";
 import FeaturedWork from "@/components/FeaturedWork";
@@ -8,7 +8,7 @@ import FooterSection from "@/components/FooterSection";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+      <KineticNav />
       <HeroSection />
       <WorkGrid />
       <FeaturedWork />
