@@ -2,6 +2,7 @@ import { Component as KineticNav } from "@/components/ui/sterling-gate-kinetic-n
 import HeroSection from "@/components/HeroSection";
 import WorkGrid from "@/components/WorkGrid";
 import FeaturedWork from "@/components/FeaturedWork";
+import SplineRobotSection from "@/components/SplineRobotSection";
 import AboutSection from "@/components/AboutSection";
 import FooterSection from "@/components/FooterSection";
 
@@ -12,6 +13,7 @@ const Index = () => {
       <HeroSection />
       <WorkGrid />
       <FeaturedWork />
+      <SplineRobotSection />
       <AboutSection />
       <FooterSection />
     </div>
