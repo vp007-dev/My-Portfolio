@@ -76,7 +76,7 @@ const HeroSection = () => {
 
         {/* Main name — letter-by-letter reveal */}
         <h1 className="font-brush font-black leading-[0.85] tracking-tight">
-          <span className="block text-[3.5rem] sm:text-7xl md:text-[8rem] lg:text-[10rem] text-foreground">
+          <span className="block text-[4.5rem] sm:text-[6rem] md:text-[9rem] lg:text-[12rem] text-foreground">
             {firstNameLetters.map((letter, i) => (
               <motion.span
                 key={`f-${i}`}
@@ -94,7 +94,7 @@ const HeroSection = () => {
               </motion.span>
             ))}
           </span>
-          <span className="block text-[3.5rem] sm:text-7xl md:text-[8rem] lg:text-[10rem]">
+          <span className="block text-[4.5rem] sm:text-[6rem] md:text-[9rem] lg:text-[12rem]">
             {lastNameLetters.map((letter, i) => (
               <motion.span
                 key={`l-${i}`}
