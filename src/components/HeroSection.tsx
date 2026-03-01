@@ -1,8 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useCallback } from "react";
 import { TextScramble } from "@/components/ui/text-scramble";
-import { FeatureSteps } from "@/components/ui/feature-section";
-import featureDevImg from "@/assets/feature-dev.png";
+import heroImg from "@/assets/hero-illustration.png";
 
 const phrases = [
   "Building immersive digital experiences",
@@ -72,38 +71,10 @@ const HeroSection = () => {
         </motion.div>
       </motion.div>
 
-      <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, 80]) }} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }} className="max-w-7xl mx-auto w-full mt-6 md:mt-8">
-        <FeatureSteps
-          features={[
-            {
-              step: "Step 1",
-              title: "Full-Stack Development",
-              content: "Building scalable web apps with React, Next.js, Node.js, and modern cloud infrastructure.",
-              image: featureDevImg,
-            },
-            {
-              step: "Step 2",
-              title: "Game Development",
-              content: "Creating immersive gaming experiences with Unity, PhaserJS, and custom game engines.",
-              image: "https://images.unsplash.com/photo-1556438064-2d7646166914?w=800&auto=format&fit=crop",
-            },
-            {
-              step: "Step 3",
-              title: "AI & Machine Learning",
-              content: "Developing intelligent systems with Python, TensorFlow, and cutting-edge ML pipelines.",
-              image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop",
-            },
-            {
-              step: "Step 4",
-              title: "Space & IoT Projects",
-              content: "NASA Space Apps winner — building IoT solutions and space-tech prototypes that push boundaries.",
-              image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&auto=format&fit=crop",
-            },
-          ]}
-          title="What I Do"
-          autoPlayInterval={4000}
-          imageHeight="h-[350px] md:h-[450px]"
-        />
+      <motion.div style={{ y: useTransform(scrollYProgress, [0, 1], [0, 80]) }} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }} className="max-w-7xl mx-auto px-4 md:px-12 w-full mt-6 md:mt-8">
+        <div className="relative rounded-xl md:rounded-2xl overflow-hidden hover-lift">
+          <img src={heroImg} alt="Developer workspace illustration" className="w-full h-auto object-cover rounded-xl md:rounded-2xl" loading="eager" />
+        </div>
       </motion.div>
 
       <motion.div style={{ x: marqueeX }} className="mt-10 md:mt-16 overflow-hidden">
