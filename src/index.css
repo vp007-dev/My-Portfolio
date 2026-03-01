@@ -116,7 +116,7 @@
 
 /* Font override classes - outside @layer to ensure they win over base h1 rules */
 .font-brush {
-  font-family: 'Halfre', 'Kaushan Script', cursive !important;
+  font-family: 'HalfreCustom', 'Halfre', sans-serif !important;
 }
 
 .font-handwritten {
