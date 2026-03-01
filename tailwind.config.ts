@@ -17,6 +17,7 @@ export default {
         display: ["Syne", "sans-serif"],
         body: ["Space Grotesk", "sans-serif"],
         handwritten: ["Caveat", "cursive"],
+        brush: ["Kaushan Script", "cursive"],
       },
       colors: {
         border: "hsl(var(--border))",
