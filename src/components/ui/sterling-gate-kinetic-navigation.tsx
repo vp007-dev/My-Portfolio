@@ -189,7 +189,7 @@ export function Component() {
     { icon: Github, href: "#", label: "GitHub" },
     { icon: Linkedin, href: "#", label: "LinkedIn" },
     { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Mail, href: "mailto:vanshpandey@gmail.com", label: "Email" },
+    { icon: Mail, href: "mailto:vanshpandey928@gmail.com", label: "Email" },
   ];
 
   return (
@@ -205,7 +205,7 @@ export function Component() {
 
               {/* Center: Say Hello link */}
               <a
-                href="mailto:vanshpandey@gmail.com"
+                href="mailto:vanshpandey928@gmail.com"
                 className="kinetic-hello hidden md:flex items-center gap-2 font-display text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Mail className="w-3.5 h-3.5" />
