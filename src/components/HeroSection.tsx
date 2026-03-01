@@ -50,7 +50,7 @@ const HeroSection = () => {
             morphTime={1.5}
             cooldownTime={0.5}
             className="h-10 md:h-12"
-            textClassName="text-muted-foreground text-sm md:text-base font-body leading-relaxed"
+            textClassName="text-foreground text-base md:text-lg font-display font-semibold leading-relaxed"
           />
         </motion.div>
       </motion.div>
