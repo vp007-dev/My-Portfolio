@@ -177,7 +177,7 @@ export function Component() {
   const closeMenu = () => setIsMenuOpen(false);
 
   const menuItems = [
-    { label: "Pin Board", href: "#pinboard", shape: "1" },
+    { label: "Board", href: "#pinboard", shape: "1" },
     { label: "Work", href: "#work", shape: "2" },
     { label: "About", href: "#about", shape: "3" },
     { label: "Process", href: "#services", shape: "4" },
