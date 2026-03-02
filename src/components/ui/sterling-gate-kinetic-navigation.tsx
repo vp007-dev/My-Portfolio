@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { ArrowUpRight, Mail, Github, Linkedin, Twitter } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(CustomEase);
@@ -203,14 +204,17 @@ export function Component() {
                 VP<span className="text-primary">.</span>
               </a>
 
-              {/* Center: Say Hello link */}
-              <a
-                href="mailto:vanshpandey928@gmail.com"
-                className="kinetic-hello hidden md:flex items-center gap-2 font-display text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <Mail className="w-3.5 h-3.5" />
-                Say Hello
-              </a>
+              {/* Center: Say Hello + Theme Toggle */}
+              <div className="hidden md:flex items-center gap-5">
+                <a
+                  href="mailto:vanshpandey928@gmail.com"
+                  className="kinetic-hello flex items-center gap-2 font-display text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  Say Hello
+                </a>
+                <ThemeToggle />
+              </div>
 
               {/* Menu Toggle Button */}
               <button
@@ -338,9 +342,14 @@ export function Component() {
               <div className="menu-bottom" data-menu-fade>
                 <div className="menu-bottom-divider" />
                 <div className="menu-bottom-content">
-                  <span className="font-display text-xs uppercase tracking-widest text-muted-foreground">
-                    Connect
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <span className="font-display text-xs uppercase tracking-widest text-muted-foreground">
+                      Connect
+                    </span>
+                    <div className="md:hidden">
+                      <ThemeToggle />
+                    </div>
+                  </div>
                   <div className="menu-social-links">
                     {socialLinks.map((social) => (
                       <a
