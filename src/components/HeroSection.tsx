@@ -119,7 +119,7 @@ const HeroSection = () => {
         </div>
 
         {/* Name + ASCII art row */}
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex items-center justify-between gap-6 lg:gap-10">
           {/* Main name — letter-by-letter reveal */}
           <h1 className="font-brush font-black leading-[0.85] tracking-tight flex-1">
             <span className="block text-[4.5rem] sm:text-[6rem] md:text-[9rem] lg:text-[12rem] text-foreground">
@@ -161,7 +161,7 @@ const HeroSection = () => {
           </h1>
 
           {/* ASCII art on right */}
-          <div className="hidden lg:flex items-start pt-4 xl:pt-8">
+          <div className="hidden lg:flex items-center shrink-0">
             <AsciiArt />
           </div>
         </div>
