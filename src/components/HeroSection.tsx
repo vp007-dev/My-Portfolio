@@ -120,35 +120,47 @@ const HeroSection = () => {
 
         {/* Name + ASCII art row */}
         <div className="flex items-center justify-between gap-6 lg:gap-10">
-          {/* Main name — letter-by-letter reveal */}
-          <h1 className="font-brush font-black leading-[0.85] tracking-tight flex-1">
-            <span className="block text-[4.5rem] sm:text-[6rem] md:text-[9rem] lg:text-[12rem] text-foreground">
-              {firstNameLetters.map((letter, i) => (
-                <motion.span
-                  key={`f-${i}`}
-                  initial={{ opacity: 0, y: 80, rotateX: -90 }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.3 + i * 0.06,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="inline-block"
-                  style={{ transformOrigin: "bottom" }}
-                >
-                  {letter}
-                </motion.span>
-              ))}
+          {/* Main name — creative mixed typography */}
+          <h1 className="flex-1 relative">
+            {/* First name — outlined stroke style */}
+            <span className="block relative">
+              <span className="block text-[4.5rem] sm:text-[6rem] md:text-[9rem] lg:text-[12rem] font-brush font-black leading-[0.85] tracking-tight">
+                {firstNameLetters.map((letter, i) => (
+                  <motion.span
+                    key={`f-${i}`}
+                    initial={{ opacity: 0, y: 100, rotateX: -90 }}
+                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                    transition={{
+                      duration: 0.9,
+                      delay: 0.3 + i * 0.07,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="inline-block hero-stroke-text"
+                    style={{ transformOrigin: "bottom" }}
+                  >
+                    {letter}
+                  </motion.span>
+                ))}
+              </span>
+              {/* Decorative accent line */}
+              <motion.div
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute -right-2 md:right-4 top-1/2 -translate-y-1/2 w-16 md:w-24 h-1 md:h-1.5 bg-secondary rounded-full origin-left hidden sm:block"
+              />
             </span>
-            <span className="block text-[4.5rem] sm:text-[6rem] md:text-[9rem] lg:text-[12rem]">
+
+            {/* Last name — filled gradient with glow */}
+            <span className="block text-[4.5rem] sm:text-[6rem] md:text-[9rem] lg:text-[12rem] font-brush font-black leading-[0.85] tracking-tight relative">
               {lastNameLetters.map((letter, i) => (
                 <motion.span
                   key={`l-${i}`}
-                  initial={{ opacity: 0, y: 80, rotateX: -90 }}
+                  initial={{ opacity: 0, y: 100, rotateX: -90 }}
                   animate={{ opacity: 1, y: 0, rotateX: 0 }}
                   transition={{
-                    duration: 0.8,
-                    delay: 0.6 + i * 0.06,
+                    duration: 0.9,
+                    delay: 0.6 + i * 0.07,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   className="inline-block text-gradient"
@@ -157,6 +169,15 @@ const HeroSection = () => {
                   {letter}
                 </motion.span>
               ))}
+              {/* Handwritten role annotation */}
+              <motion.span
+                initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+                animate={{ opacity: 1, scale: 1, rotate: -6 }}
+                transition={{ duration: 0.8, delay: 1.4, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute -bottom-2 right-0 md:-bottom-4 md:right-8 font-handwritten text-lg md:text-3xl text-secondary whitespace-nowrap"
+              >
+                ← that's me!
+              </motion.span>
             </span>
           </h1>
 
