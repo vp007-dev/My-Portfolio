@@ -192,6 +192,27 @@
   }
 }
 
+/* Hero stroke text — outlined letters */
+.hero-stroke-text {
+  color: transparent;
+  -webkit-text-stroke: 2px hsl(var(--foreground));
+  text-stroke: 2px hsl(var(--foreground));
+  transition: all 0.4s ease;
+}
+
+.hero-stroke-text:hover {
+  color: hsl(var(--foreground));
+  -webkit-text-stroke: 0px;
+  text-stroke: 0px;
+}
+
+@media (min-width: 768px) {
+  .hero-stroke-text {
+    -webkit-text-stroke: 3px hsl(var(--foreground));
+    text-stroke: 3px hsl(var(--foreground));
+  }
+}
+
 /* Spline loader */
 .loader {
   width: 28px;
