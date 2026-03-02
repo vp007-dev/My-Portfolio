@@ -174,7 +174,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
                 animate={{ opacity: 1, scale: 1, rotate: -6 }}
                 transition={{ duration: 0.8, delay: 1.4, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -bottom-2 right-0 md:-bottom-4 md:right-8 font-handwritten text-lg md:text-3xl text-secondary whitespace-nowrap"
+                className="absolute -bottom-6 right-0 md:-bottom-10 lg:-bottom-12 md:right-8 font-handwritten text-lg md:text-3xl text-secondary whitespace-nowrap"
               >
                 ← that's me!
               </motion.span>
